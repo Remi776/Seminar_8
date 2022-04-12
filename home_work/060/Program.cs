@@ -1,29 +1,40 @@
-﻿int[,,] array =
+﻿Console.Write("Enter the pages: ");
+int pages = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter the rows: ");
+int rows = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter the columns: ");
+int columns = Convert.ToInt32(Console.ReadLine());
+int[,,] notebook = new int[pages, rows, columns];
+
+FillArray(notebook);
+PrintArray(notebook);
+void FillArray(int[,,] array)
 {
+    Random rnd = new Random();
+    int count = 10;
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        {23, 12, 11},
-        {15, 45, 67}
-    },
-    {
-        {48, 49, 71},
-        {85, 35, 57}
-    },
-    {
-        {99, 98, 97},
-        {96, 95, 94}
-    },
-};
-PrintArray();
-void PrintArray()
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            for (int k = 0; k < array.GetLength(2); k++)
+            {
+                array[i, j, k] = count;
+                count++;
+            }
+        }
+    }
+}
+
+void PrintArray(int[,,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
-        Console.WriteLine("Page № " + i);
+        Console.WriteLine("Page № " + (i + 1));
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            for (int k = 0; k < array.GetLength(1); k++)
+            for (int k = 0; k < array.GetLength(2); k++)
             {
-                Console.WriteLine($"Elemet {array[i, j, k]}, index {j},{k}");
+                Console.WriteLine($"Element {array[i, j, k]}, index {j}, {k}");
             }
         }
     }
